@@ -1,7 +1,7 @@
 repeat task.wait() until game:IsLoaded()
 local injected = true
 local oldrainbow = false
-local customdir = (shared.VapePrivate and "vapeprivate/" or "vape/")
+local customdir = (shared.VapePrivate and "HT/" or "HT/")
 local betterisfile = function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
@@ -21,7 +21,7 @@ local function displayPopup(text, func)
 	prompt._hideErrorCode = true
 	local gui = Instance.new("ScreenGui", game:GetService("CoreGui"))
 	prompt:setParent(gui)
-	prompt:setErrorTitle("Vape")
+	prompt:setErrorTitle("HT")
 	prompt:updateButtons({{
 		Text = "OK",
 		Callback = function() 
@@ -183,7 +183,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("HT/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -1922,8 +1922,8 @@ else
 		end
 	end
 	if shared.VapePrivate then
-		if pcall(function() readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua") end) then
-			loadstring(readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua"))()
+		if pcall(function() readfile("HT/CustomModules/"..game.PlaceId..".lua") end) then
+			loadstring(readfile("HT/CustomModules/"..game.PlaceId..".lua"))()
 		end	
 	end
 	GuiLibrary["LoadSettings"](shared.VapeCustomProfile)
