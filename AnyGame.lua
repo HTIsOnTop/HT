@@ -32,11 +32,11 @@ local betterisfile = function(file)
 end
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		assert(betterisfile("vape/"..scripturl), "File not found : vape/"..scripturl)
-		return readfile("vape/"..scripturl)
+		assert(betterisfile("HT/"..scripturl), "File not found : HT/"..scripturl)
+		return readfile("HT/"..scripturl)
 	else
 		local res = game:HttpGet("https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..scripturl, true)
-		assert(res ~= "404: Not Found", "File not found : vape/"..scripturl)
+		assert(res ~= "404: Not Found", "File not found : HT/"..scripturl)
 		return res
 	end
 end
@@ -102,8 +102,8 @@ do
 end
 
 local WhitelistFunctions = {StoredHashes = {}, PriorityList = {
-	["VAPE OWNER"] = 3,
-	["VAPE PRIVATE"] = 2,
+	["HT OWNER"] = 3,
+	["HT PRIVATE"] = 2,
 	["DEFAULT"] = 1
 }, WhitelistTable = {}, Loaded = false, CustomTags = {}}
 do
@@ -136,10 +136,10 @@ do
 	function WhitelistFunctions:GetTag(plr)
 		local plrstr = WhitelistFunctions:CheckPlayerType(plr)
 		local hash = WhitelistFunctions:Hash(plr.Name..plr.UserId)
-		if plrstr == "VAPE OWNER" then
-			return "[VAPE OWNER] "
-		elseif plrstr == "VAPE PRIVATE" then 
-			return "[VAPE PRIVATE] "
+		if plrstr == "HT OWNER" then
+			return "[HT OWNER] "
+		elseif plrstr == "HT PRIVATE" then 
+			return "[HT PRIVATE] "
 		elseif WhitelistFunctions.WhitelistTable.chattags[hash] then
 			local data = WhitelistFunctions.WhitelistTable.chattags[hash]
 			local newnametag = ""
@@ -166,7 +166,7 @@ do
 		local private = WhitelistFunctions:FindWhitelistTable(WhitelistFunctions.WhitelistTable.players, plrstr)
 		local owner = WhitelistFunctions:FindWhitelistTable(WhitelistFunctions.WhitelistTable.owners, plrstr)
 		local tab = owner or private
-		playertype = owner and "VAPE OWNER" or private and "VAPE PRIVATE" or "DEFAULT"
+		playertype = owner and "HT OWNER" or private and "HT PRIVATE" or "DEFAULT"
 		playerattackable = (not tab) or (not (type(tab) == "table" and tab.invulnerable or true))
 		return playertype, playerattackable
 	end
@@ -233,7 +233,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("HT/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -386,7 +386,7 @@ local radarcam = Instance.new("Camera")
 radarcam.FieldOfView = 45
 local Radar = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Radar", 
-	["Icon"] = "vape/assets/RadarIcon1.png",
+	["Icon"] = "HT/assets/RadarIcon1.png",
 	["IconSize"] = 16
 })
 local RadarColor = Radar.CreateColorSlider({
@@ -443,7 +443,7 @@ players.PlayerRemoving:Connect(function(plr)
 end)
 GuiLibrary["ObjectsThatCanBeSaved"]["GUIWindow"]["Api"].CreateCustomToggle({
 	["Name"] = "Radar", 
-	["Icon"] = "vape/assets/RadarIcon2.png", 
+	["Icon"] = "HT/assets/RadarIcon2.png", 
 	["Function"] = function(callback)
 		Radar.SetVisible(callback) 
 		if callback then
@@ -2648,7 +2648,7 @@ local Arrows = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].Create
 						thing.AnchorPoint = Vector2.new(0.5, 0.5)
 						thing.Position = UDim2.new(0.5, 0, 0.5, 0)
 						thing.Visible = false
-						thing.Image = getcustomassetfunc("vape/assets/ArrowIndicator.png")
+						thing.Image = getcustomassetfunc("HT/assets/ArrowIndicator.png")
 						thing.Name = plr.Name
 						thing.Parent = ArrowsFolder
 					end
@@ -4479,14 +4479,14 @@ runcode(function()
 				vapecapeconnection = lplr.CharacterAdded:Connect(function(char)
 					task.spawn(function()
 						pcall(function() 
-							Cape(char, getcustomassetfunc("vape/assets/VapeCape.png"))
+							Cape(char, getcustomassetfunc("HT/assets/VapeCape.png"))
 						end)
 					end)
 				end)
 				if lplr.Character then
 					task.spawn(function()
 						pcall(function() 
-							Cape(lplr.Character, getcustomassetfunc("vape/assets/VapeCape.png"))
+							Cape(lplr.Character, getcustomassetfunc("HT/assets/VapeCape.png"))
 						end)
 					end)
 				end
