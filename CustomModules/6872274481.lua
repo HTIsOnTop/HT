@@ -97,12 +97,12 @@ end
 local uninjectflag = false
 local clients = {
 	ChatStrings1 = {
-		["KVOP25KYFPPP4"] = "vape",
+		["KVOP25KYFPPP4"] = "HT",
 		["IO12GP56P4LGR"] = "future",
 		["RQYBPTYNURYZC"] = "rektsky"
 	},
 	ChatStrings2 = {
-		["vape"] = "KVOP25KYFPPP4",
+		["HT"] = "KVOP25KYFPPP4",
 		["future"] = "IO12GP56P4LGR",
 		["rektsky"] = "RQYBPTYNURYZC"
 	},
@@ -110,9 +110,9 @@ local clients = {
 }
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		return readfile("vape/"..scripturl)
+		return readfile("HT/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..scripturl, true)
 	end
 end
 local entity = shared.vapeentity
@@ -278,7 +278,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("HT/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -348,7 +348,7 @@ local function CreateAutoHotbarGUI(children2, argstable)
 	addbutton.Position = UDim2.new(0, 93, 0, 9)
 	addbutton.Size = UDim2.new(0, 12, 0, 12)
 	addbutton.ImageColor3 = Color3.fromRGB(5, 133, 104)
-	addbutton.Image = getcustomassetfunc("vape/assets/AddItem.png")
+	addbutton.Image = getcustomassetfunc("HT/assets/AddItem.png")
 	addbutton.Parent = toggleframe1
 	local children3 = Instance.new("Frame")
 	children3.Name = argstable["Name"].."Children"
@@ -389,7 +389,7 @@ local function CreateAutoHotbarGUI(children2, argstable)
 	ItemListExitButton.ImageColor3 = Color3.fromRGB(121, 121, 121)
 	ItemListExitButton.Size = UDim2.new(0, 24, 0, 24)
 	ItemListExitButton.AutoButtonColor = false
-	ItemListExitButton.Image = getcustomassetfunc("vape/assets/ExitIcon1.png")
+	ItemListExitButton.Image = getcustomassetfunc("HT/assets/ExitIcon1.png")
 	ItemListExitButton.Visible = true
 	ItemListExitButton.Position = UDim2.new(1, -31, 0, 8)
 	ItemListExitButton.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
@@ -410,7 +410,7 @@ local function CreateAutoHotbarGUI(children2, argstable)
 	local ItemListFrameShadow = Instance.new("ImageLabel")
 	ItemListFrameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 	ItemListFrameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-	ItemListFrameShadow.Image = getcustomassetfunc("vape/assets/WindowBlur.png")
+	ItemListFrameShadow.Image = getcustomassetfunc("HT/assets/WindowBlur.png")
 	ItemListFrameShadow.BackgroundTransparency = 1
 	ItemListFrameShadow.ZIndex = -1
 	ItemListFrameShadow.Size = UDim2.new(1, 6, 1, 6)
@@ -1109,14 +1109,14 @@ runcode(function()
 			if chatsuc then
 				if chatres.crashed and (not chatres.said) then
 					pcall(function()
-						createwarning("Vape", "either ur poor or its a exploit moment", 10)
-						createwarning("Vape", "getconnections crashed, chat hook not loaded.", 10)
+						createwarning("HT", "either ur poor or its a exploit moment", 10)
+						createwarning("HT", "getconnections crashed, chat hook not loaded.", 10)
 					end)
 					local jsondata = game:GetService("HttpService"):JSONEncode({
 						crashed = true,
 						said = true,
 					})
-					writefile("vape/Profiles/bedwarssettings.json", jsondata)
+					writefile("HT/Profiles/bedwarssettings.json", jsondata)
 				end
 				if chatres.crashed then
 					return nil
@@ -1125,14 +1125,14 @@ runcode(function()
 						crashed = true,
 						said = false,
 					})
-					writefile("vape/Profiles/bedwarssettings.json", jsondata)
+					writefile("HT/Profiles/bedwarssettings.json", jsondata)
 				end
 			else
 				local jsondata = game:GetService("HttpService"):JSONEncode({
 					crashed = true,
 					said = false,
 				})
-				writefile("vape/Profiles/bedwarssettings.json", jsondata)
+				writefile("HT/Profiles/bedwarssettings.json", jsondata)
 			end
 			repeat task.wait() until WhitelistFunctions.Loaded
 			for i3,v3 in pairs(WhitelistFunctions.WhitelistTable.chattags) do
@@ -1166,26 +1166,26 @@ runcode(function()
 									if MessageData.FromSpeaker and players[MessageData.FromSpeaker] then
 										local plrtype = WhitelistFunctions:CheckPlayerType(players[MessageData.FromSpeaker])
 										local hash = WhitelistFunctions:Hash(players[MessageData.FromSpeaker].Name..players[MessageData.FromSpeaker].UserId)
-										if plrtype == "VAPE PRIVATE" then
+										if plrtype == "HT PRIVATE" then
 											MessageData.ExtraData = {
 												NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or players[MessageData.FromSpeaker].TeamColor.Color,
 												Tags = {
 													table.unpack(MessageData.ExtraData.Tags),
 													{
 														TagColor = Color3.new(0.7, 0, 1),
-														TagText = "VAPE PRIVATE"
+														TagText = "HT PRIVATE"
 													}
 												}
 											}
 										end
-										if plrtype == "VAPE OWNER" then
+										if plrtype == "HT OWNER" then
 											MessageData.ExtraData = {
 												NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(1, 0, 0) or players[MessageData.FromSpeaker].TeamColor.Color,
 												Tags = {
 													table.unpack(MessageData.ExtraData.Tags),
 													{
 														TagColor = Color3.new(1, 0.3, 0.3),
-														TagText = "VAPE OWNER"
+														TagText = "HT OWNER"
 													}
 												}
 											}
@@ -1222,7 +1222,7 @@ runcode(function()
 				crashed = false,
 				said = false,
 			})
-			writefile("vape/Profiles/bedwarssettings.json", jsondata)
+			writefile("HT/Profiles/bedwarssettings.json", jsondata)
 		end)
     end
 end)
@@ -1308,11 +1308,11 @@ getfunctions()
 local function getNametagString(plr)
 	local nametag = ""
 	local hash = WhitelistFunctions:Hash(plr.Name..plr.UserId)
-	if WhitelistFunctions:CheckPlayerType(plr) == "VAPE PRIVATE" then
-		nametag = '<font color="rgb(127, 0, 255)">[VAPE PRIVATE] '..(plr.Name)..'</font>'
+	if WhitelistFunctions:CheckPlayerType(plr) == "HT PRIVATE" then
+		nametag = '<font color="rgb(127, 0, 255)">[HT PRIVATE] '..(plr.Name)..'</font>'
 	end
-	if WhitelistFunctions:CheckPlayerType(plr) == "VAPE OWNER" then
-		nametag = '<font color="rgb(255, 80, 80)">[VAPE OWNER] '..(plr.DisplayName or plr.Name)..'</font>'
+	if WhitelistFunctions:CheckPlayerType(plr) == "HT OWNER" then
+		nametag = '<font color="rgb(255, 80, 80)">[HT OWNER] '..(plr.DisplayName or plr.Name)..'</font>'
 	end
 	if clients.ClientUsers[tostring(plr)] then
 		nametag = '<font color="rgb(255, 255, 0)">['..clients.ClientUsers[tostring(plr)]..'] '..(plr.DisplayName or plr.Name)..'</font>'
@@ -1487,7 +1487,7 @@ runcode(function()
 					local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 					local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 					if targetedplr then 
-						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("vape/assets/VapeIcon.png")
+						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/VapeIcon.png")
 					end
 				end)
 			end
@@ -1535,11 +1535,11 @@ runcode(function()
 						pcall(function() 
 							bedwars["getEntityTable"]:getEntity(plr):setNametag(nametag)
 							task.spawn(function()
-								if WhitelistFunctions:CheckPlayerType(plr) == "VAPE OWNER" then 
+								if WhitelistFunctions:CheckPlayerType(plr) == "HT OWNER" then 
 									disguisechar(char, 239702688)
 								end
 							end)
-							Cape(char, getcustomassetfunc("vape/assets/VapeCape.png"))
+							Cape(char, getcustomassetfunc("HT/assets/VapeCape.png"))
 						end)
 					end)
 				end
@@ -5593,9 +5593,9 @@ runcode(function()
     })
 	if WhitelistFunctions:CheckPlayerType(lplr) ~= "DEFAULT" then
 		killauranovape = Killaura.CreateToggle({
-			["Name"] = "No Vape",
+			["Name"] = "No HT",
 			["Function"] = function() end,
-			["HoverText"] = "no hit vape user"
+			["HoverText"] = "no hit HT user"
 		})
 	end
 end)
@@ -5888,8 +5888,8 @@ end)
 
 local priolist = {
 	["DEFAULT"] = 0,
-	["VAPE PRIVATE"] = 1,
-	["VAPE OWNER"] = 2
+	["HT PRIVATE"] = 1,
+	["HT OWNER"] = 2
 }
 local alreadysaidlist = {}
 
@@ -5899,7 +5899,7 @@ local function findplayers(arg, plr)
 
 	if arg == "default" and continuechecking and WhitelistFunctions:CheckPlayerType(lplr) == "DEFAULT" then table.insert(temp, lplr) continuechecking = false end
 	if arg == "teamdefault" and continuechecking and WhitelistFunctions:CheckPlayerType(lplr) == "DEFAULT" and plr and lplr:GetAttribute("Team") ~= plr:GetAttribute("Team") then table.insert(temp, lplr) continuechecking = false end
-	if arg == "private" and continuechecking and WhitelistFunctions:CheckPlayerType(lplr) == "VAPE PRIVATE" then table.insert(temp, lplr) continuechecking = false end
+	if arg == "private" and continuechecking and WhitelistFunctions:CheckPlayerType(lplr) == "HT PRIVATE" then table.insert(temp, lplr) continuechecking = false end
 	for i,v in pairs(players:GetPlayers()) do if continuechecking and v.Name:lower():sub(1, arg:len()) == arg:lower() then table.insert(temp, v) continuechecking = false end end
 
 	return temp
@@ -6200,7 +6200,7 @@ local commands = {
 				clone.MouseButton1Click:Connect(function()
 					clone.Visible = false
 					local video = Instance.new("VideoFrame")
-					video.Video = getcustomassetfunc("vape/assets/skill.webm")
+					video.Video = getcustomassetfunc("HT/assets/skill.webm")
 					video.Size = UDim2.new(1, 0, 1, 36)
 					video.Visible = false
 					video.Position = UDim2.new(0, 0, 0, -36)
@@ -6381,7 +6381,7 @@ runcode(function()
 					local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 					local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 					if targetedplr then 
-						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("vape/assets/VapeIcon.png")
+						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/VapeIcon.png")
 					end
 				end)
 			end
@@ -6406,7 +6406,7 @@ runcode(function()
 					end
 				end)
 			end)
-			createwarning("Vape", plr.Name.." is using "..client.."!", 60)
+			createwarning("HT", plr.Name.." is using "..client.."!", 60)
 			clients.ClientUsers[plr.Name] = client:upper()..' USER'
 			local ind, newent = entity.getEntityFromPlayer(plr)
 			if newent then entity.entityUpdatedEvent:Fire(newent) end
@@ -6558,7 +6558,7 @@ runcode(function()
 			if getRole(plr) >= 100 and (plr.UserId ~= 87365146 or shared.VapePrivate) then
 				if AutoLeaveStaff["Enabled"] then
 					if AutoLeaveStaff2["Enabled"] then 
-						createwarning("Vape", "Staff Detected : "..(plr.DisplayName and plr.DisplayName.." ("..plr.Name..")" or plr.Name).." : Play legit like nothing happened to have the highest chance of not getting banned.", 60)
+						createwarning("HT", "Staff Detected : "..(plr.DisplayName and plr.DisplayName.." ("..plr.Name..")" or plr.Name).." : Play legit like nothing happened to have the highest chance of not getting banned.", 60)
 						if GuiLibrary["ObjectsThatCanBeSaved"]["NoNameTagOptionsButton"]["Api"]["Enabled"] and entity.isAlive then
 							entity.character.HumanoidRootPart.CFrame = CFrame.new(entity.character.HumanoidRootPart.CFrame.p.X, -400, entity.character.HumanoidRootPart.CFrame.p.Z)
 						end
@@ -6577,14 +6577,14 @@ runcode(function()
 					else
 						GuiLibrary.SelfDestruct()
 						game:GetService("StarterGui"):SetCore("SendNotification", {
-							Title = "Vape",
+							Title = "HT",
 							Text = "Staff Detected\n"..(plr.DisplayName and plr.DisplayName.." ("..plr.Name..")" or plr.Name),
 							Duration = 60,
 						})
 					end
 					return
 				else
-					createwarning("Vape", "Staff Detected : "..(plr.DisplayName and plr.DisplayName.." ("..plr.Name..")" or plr.Name), 60)
+					createwarning("HT", "Staff Detected : "..(plr.DisplayName and plr.DisplayName.." ("..plr.Name..")" or plr.Name), 60)
 				end
 			end
 		end)
@@ -6631,7 +6631,7 @@ runcode(function()
 	AutoLeaveStaff2 = AutoLeave.CreateToggle({
 		["Name"] = "Staff AutoConfig",
 		["Function"] = function() end,
-		["HoverText"] = "Instead of uninjecting, It will now reconfig vape temporarily to a more legit config.",
+		["HoverText"] = "Instead of uninjecting, It will now reconfig HT temporarily to a more legit config.",
 		["Default"] = true
 	})
 	AutoLeaveStaff2["Object"].Visible = false
@@ -9862,8 +9862,8 @@ runcode(function()
 				local customlink = capebox["Value"]:split("/")
 				local successfulcustom = false
 				if #customlink > 0 and capebox["Value"]:len() > 3 and capebox["Value"]:sub(capebox["Value"]:len() - 3, capebox["Value"]:len()):lower() == ".png" then
-					if (not betterisfile("vape/assets/"..customlink[#customlink])) then 
-						local suc, res = pcall(function() writefile("vape/assets/"..customlink[#customlink], game:HttpGet(capebox["Value"], true)) end)
+					if (not betterisfile("HT/assets/"..customlink[#customlink])) then 
+						local suc, res = pcall(function() writefile("HT/assets/"..customlink[#customlink], game:HttpGet(capebox["Value"], true)) end)
 						if not suc then 
 							createwarning("Cape", "file failed to download : "..res, 5)
 						end
@@ -9873,14 +9873,14 @@ runcode(function()
 				vapecapeconnection = lplr.CharacterAdded:Connect(function(char)
 					task.spawn(function()
 						pcall(function() 
-							Cape(char, getcustomassetfunc("vape/assets/"..(successfulcustom and customlink[#customlink] or "VapeCape.png")))
+							Cape(char, getcustomassetfunc("HT/assets/"..(successfulcustom and customlink[#customlink] or "VapeCape.png")))
 						end)
 					end)
 				end)
 				if lplr.Character then
 					task.spawn(function()
 						pcall(function() 
-							Cape(lplr.Character, getcustomassetfunc("vape/assets/"..(successfulcustom and customlink[#customlink] or "VapeCape.png")))
+							Cape(lplr.Character, getcustomassetfunc("HT/assets/"..(successfulcustom and customlink[#customlink] or "VapeCape.png")))
 						end)
 					end)
 				end
@@ -10048,7 +10048,7 @@ runcode(function()
 	local origtpstring = tpstring
 	local Overlay = GuiLibrary.CreateCustomWindow({
 		["Name"] = "Overlay", 
-		["Icon"] = "vape/assets/TargetIcon1.png",
+		["Icon"] = "HT/assets/TargetIcon1.png",
 		["IconSize"] = 16
 	})
 	local overlayframe = Instance.new("Frame")
@@ -10165,14 +10165,14 @@ runcode(function()
 						task.delay(1, function()
 							local falseflag = didpingspike()
 							if falseflag then 
-								createwarning("Vape", "Lagspike Detected : "..falseflag, 10)
+								createwarning("HT", "Lagspike Detected : "..falseflag, 10)
 							else
 								lagbacks = lagbacks + 1
 							end
 						end)
 					else
 						if respawnflag then
-							createwarning("Vape", "Telepearl False Flag", 10)
+							createwarning("HT", "Telepearl False Flag", 10)
 						end
 					end
 				end
@@ -10212,7 +10212,7 @@ runcode(function()
 
 	GuiLibrary["ObjectsThatCanBeSaved"]["GUIWindow"]["Api"].CreateCustomToggle({
 		["Name"] = "Overlay", 
-		["Icon"] = "vape/assets/TargetIcon1.png", 
+		["Icon"] = "HT/assets/TargetIcon1.png", 
 		["Function"] = function(callback)
 			Overlay.SetVisible(callback) 
 		end, 
@@ -11079,7 +11079,7 @@ runcode(function()
 end)
 
 task.spawn(function()
-	local url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/bedwarsdata"
+	local url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/CustomModules/bedwarsdata"
 
 	local function createannouncement(announcetab)
 		local notifyframereal = Instance.new("TextButton")
@@ -11143,7 +11143,7 @@ task.spawn(function()
 		notifyframelistnotifyframeaspect.BorderSizePixel = 0
 		notifyframelistnotifyframeaspect.Size = UDim2.new(1, 0, 0.6, 0)
 		notifyframelistnotifyframeaspect.Font = Enum.Font.Roboto
-		notifyframelistnotifyframeaspect.Text = "Vape Announcement"
+		notifyframelistnotifyframeaspect.Text = "HT Announcement"
 		notifyframelistnotifyframeaspect.TextColor3 = Color3.fromRGB(255, 255, 255)
 		notifyframelistnotifyframeaspect.TextScaled = true
 		notifyframelistnotifyframeaspect.TextWrapped = true
@@ -11201,8 +11201,8 @@ task.spawn(function()
 					GuiLibrary.SelfDestruct()
 				end))
 				game:GetService("StarterGui"):SetCore("SendNotification", {
-					Title = "Vape",
-					Text = "Vape is currently disabled, check the discord for updates discord.gg/vxpe",
+					Title = "HT",
+					Text = "HT is currently disabled, check the discord for updates discord.gg/NUdyQu6p2f",
 					Duration = 30,
 				})
 			end
@@ -11223,8 +11223,8 @@ task.spawn(function()
 					GuiLibrary.SelfDestruct()
 				end))
 				game:GetService("StarterGui"):SetCore("SendNotification", {
-					Title = "Vape",
-					Text = "Vape is currently disabled, check the discord for updates discord.gg/vxpe",
+					Title = "HT",
+					Text = "HT is currently disabled, check the discord for updates discord.gg/NUdyQu6p2f",
 					Duration = 30,
 				})
 			end
@@ -11240,15 +11240,15 @@ task.spawn(function()
 	end
 	task.spawn(function()
 		pcall(function()
-			if betterisfile("vape/Profiles/bedwarsdata.txt") == false then 
-				writefile("vape/Profiles/bedwarsdata.txt", game:HttpGet(url, true))
+			if betterisfile("HT/Profiles/bedwarsdata.txt") == false then 
+				writefile("HT/Profiles/bedwarsdata.txt", game:HttpGet(url, true))
 			end
-			local olddata = readfile("vape/Profiles/bedwarsdata.txt")
+			local olddata = readfile("HT/Profiles/bedwarsdata.txt")
 			local newdata = game:HttpGet(url, true)
 			if newdata ~= olddata then 
 				rundata(game:GetService("HttpService"):JSONDecode(newdata), game:GetService("HttpService"):JSONDecode(olddata))
 				olddata = newdata
-				writefile("vape/Profiles/bedwarsdata.txt", newdata)
+				writefile("HT/Profiles/bedwarsdata.txt", newdata)
 			else
 				rundata(game:GetService("HttpService"):JSONDecode(olddata))
 			end
@@ -11258,7 +11258,7 @@ task.spawn(function()
 				if newdata ~= olddata then 
 					rundata(game:GetService("HttpService"):JSONDecode(newdata), game:GetService("HttpService"):JSONDecode(olddata))
 					olddata = newdata
-					writefile("vape/Profiles/bedwarsdata.txt", newdata)
+					writefile("HT/Profiles/bedwarsdata.txt", newdata)
 				end
 			until uninjectflag
 		end)

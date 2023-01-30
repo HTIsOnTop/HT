@@ -21,9 +21,9 @@ local origC0 = nil
 local collectionservice = game:GetService("CollectionService")
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		return readfile("vape/"..scripturl)
+		return readfile("HT/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..scripturl, true)
 	end
 end
 local bettergetfocus = function()
@@ -77,9 +77,9 @@ end
 
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		return readfile("vape/"..scripturl)
+		return readfile("HT/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..scripturl, true)
 	end
 end
 
@@ -191,7 +191,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("HT/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -266,14 +266,14 @@ runcode(function()
 			if chatsuc then
 				if chatres.crashed and (not chatres.said) then
 					pcall(function()
-						createwarning("Vape", "either ur poor or its a exploit moment", 10)
-						createwarning("Vape", "getconnections crashed, chat hook not loaded.", 10)
+						createwarning("HT", "either ur poor or its a exploit moment", 10)
+						createwarning("HT", "getconnections crashed, chat hook not loaded.", 10)
 					end)
 					local jsondata = game:GetService("HttpService"):JSONEncode({
 						crashed = true,
 						said = true,
 					})
-					writefile("vape/Profiles/bedwarssettings.json", jsondata)
+					writefile("HT/Profiles/bedwarssettings.json", jsondata)
 				end
 				if chatres.crashed then
 					return nil
@@ -282,14 +282,14 @@ runcode(function()
 						crashed = true,
 						said = false,
 					})
-					writefile("vape/Profiles/bedwarssettings.json", jsondata)
+					writefile("HT/Profiles/bedwarssettings.json", jsondata)
 				end
 			else
 				local jsondata = game:GetService("HttpService"):JSONEncode({
 					crashed = true,
 					said = false,
 				})
-				writefile("vape/Profiles/bedwarssettings.json", jsondata)
+				writefile("HT/Profiles/bedwarssettings.json", jsondata)
 			end
 			repeat task.wait() until WhitelistFunctions.Loaded
 			for i3,v3 in pairs(WhitelistFunctions.WhitelistTable.chattags) do
@@ -322,26 +322,26 @@ runcode(function()
 								if MessageData.FromSpeaker and players[MessageData.FromSpeaker] then
 									local plrtype = WhitelistFunctions:CheckPlayerType(players[MessageData.FromSpeaker])
 									local hash = WhitelistFunctions:Hash(players[MessageData.FromSpeaker].Name..players[MessageData.FromSpeaker].UserId)
-									if plrtype == "VAPE PRIVATE" then
+									if plrtype == "HT PRIVATE" then
 										MessageData.ExtraData = {
 											NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(0, 1, 1) or players[MessageData.FromSpeaker].TeamColor.Color,
 											Tags = {
 												table.unpack(MessageData.ExtraData.Tags),
 												{
 													TagColor = Color3.new(0.7, 0, 1),
-													TagText = "VAPE PRIVATE"
+													TagText = "HT PRIVATE"
 												}
 											}
 										}
 									end
-									if plrtype == "VAPE OWNER" then
+									if plrtype == "HT OWNER" then
 										MessageData.ExtraData = {
 											NameColor = players[MessageData.FromSpeaker].Team == nil and Color3.new(1, 0, 0) or players[MessageData.FromSpeaker].TeamColor.Color,
 											Tags = {
 												table.unpack(MessageData.ExtraData.Tags),
 												{
 													TagColor = Color3.new(1, 0.3, 0.3),
-													TagText = "VAPE OWNER"
+													TagText = "HT OWNER"
 												}
 											}
 										}
@@ -361,7 +361,7 @@ runcode(function()
 				crashed = false,
 				said = false,
 			})
-			writefile("vape/Profiles/bedwarssettings.json", jsondata)
+			writefile("HT/Profiles/bedwarssettings.json", jsondata)
 		end)
 	end
 end)
@@ -384,11 +384,11 @@ end)
 
 local function getNametagString(plr)
 	local nametag = ""
-	if WhitelistFunctions:CheckPlayerType(plr) == "VAPE PRIVATE" then
-		nametag = '<font color="rgb(127, 0, 255)">[VAPE PRIVATE] '..(plr.DisplayName or plr.Name)..'</font>'
+	if WhitelistFunctions:CheckPlayerType(plr) == "HT PRIVATE" then
+		nametag = '<font color="rgb(127, 0, 255)">[HT PRIVATE] '..(plr.DisplayName or plr.Name)..'</font>'
 	end
-	if WhitelistFunctions:CheckPlayerType(plr) == "VAPE OWNER" then
-		nametag = '<font color="rgb(255, 80, 80)">[VAPE OWNER] '..(plr.DisplayName or plr.Name)..'</font>'
+	if WhitelistFunctions:CheckPlayerType(plr) == "HT OWNER" then
+		nametag = '<font color="rgb(255, 80, 80)">[HT OWNER] '..(plr.DisplayName or plr.Name)..'</font>'
 	end
 	if WhitelistFunctions.WhitelistTable.chattags[WhitelistFunctions:Hash(plr.Name..plr.UserId)] then
 		local data = WhitelistFunctions.WhitelistTable.chattags[WhitelistFunctions:Hash(plr.Name..plr.UserId)]
@@ -488,7 +488,7 @@ local function renderNametag(plr)
 				local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 				local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 				if targetedplr then 
-					targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("vape/assets/VapeIcon.png")
+					targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/VapeIcon.png")
 				end
 			end)
 		end
@@ -498,7 +498,7 @@ local function renderNametag(plr)
 				spawn(function()
 					pcall(function() 
 						bedwars["getEntityTable"]:getEntity(plr):setNametag(nametag)
-						Cape(char, getcustomassetfunc("vape/assets/VapeCape.png"))
+						Cape(char, getcustomassetfunc("HT/assets/VapeCape.png"))
 					end)
 				end)
 			end
@@ -508,7 +508,7 @@ local function renderNametag(plr)
 				spawn(function()
 					pcall(function() 
 						bedwars["getEntityTable"]:getEntity(plr):setNametag(nametag)
-						Cape(plr.Character, getcustomassetfunc("vape/assets/VapeCape.png"))
+						Cape(plr.Character, getcustomassetfunc("HT/assets/VapeCape.png"))
 					end)
 				end)
 			end
@@ -1945,7 +1945,7 @@ runcode(function()
 	local origtpstring = tpstring
 	local Overlay = GuiLibrary.CreateCustomWindow({
 		["Name"] = "Overlay", 
-		["Icon"] = "vape/assets/TargetIcon1.png",
+		["Icon"] = "HT/assets/TargetIcon1.png",
 		["IconSize"] = 16
 	})
 	local overlayframe = Instance.new("Frame")
@@ -1992,7 +1992,7 @@ runcode(function()
 	local mapname = "Lobby"
 	GuiLibrary["ObjectsThatCanBeSaved"]["GUIWindow"]["Api"].CreateCustomToggle({
 		["Name"] = "Overlay", 
-		["Icon"] = "vape/assets/TargetIcon1.png", 
+		["Icon"] = "HT/assets/TargetIcon1.png", 
 		["Function"] = function(callback)
 			Overlay.SetVisible(callback) 
 			if callback then
@@ -2017,7 +2017,7 @@ runcode(function()
 end)
 
 spawn(function()
-	local url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/CustomModules/bedwarsdata"
+	local url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/CustomModules/bedwarsdata"
 
 	local function createannouncement(announcetab)
 		local notifyframereal = Instance.new("TextButton")
@@ -2081,7 +2081,7 @@ spawn(function()
 		notifyframelistnotifyframeaspect.BorderSizePixel = 0
 		notifyframelistnotifyframeaspect.Size = UDim2.new(1, 0, 0.6, 0)
 		notifyframelistnotifyframeaspect.Font = Enum.Font.Roboto
-		notifyframelistnotifyframeaspect.Text = "Vape Announcement"
+		notifyframelistnotifyframeaspect.Text = "HT Announcement"
 		notifyframelistnotifyframeaspect.TextColor3 = Color3.fromRGB(255, 255, 255)
 		notifyframelistnotifyframeaspect.TextScaled = true
 		notifyframelistnotifyframeaspect.TextWrapped = true
@@ -2139,9 +2139,9 @@ spawn(function()
 					GuiLibrary.SelfDestruct()
 				end))
 				game:GetService("StarterGui"):SetCore("SendNotification", {
-					Title = "Vape",
-					Text = "Vape is currently disabled, check the discord for updates discord.gg/vxpe",
-					Duration = 30,
+					Title = "HT",
+					Text = "HT is currently disabled, check the discord for updates discord.gg/NUdyQu6p2f",
+					Duration = 60,
 				})
 			end
 			if datatab.KickUsers and datatab.KickUsers[tostring(lplr.UserId)] then
@@ -2161,9 +2161,9 @@ spawn(function()
 					GuiLibrary.SelfDestruct()
 				end))
 				game:GetService("StarterGui"):SetCore("SendNotification", {
-					Title = "Vape",
-					Text = "Vape is currently disabled, check the discord for updates discord.gg/vxpe",
-					Duration = 30,
+					Title = "HT",
+					Text = "HT is currently disabled, check the discord for updates discord.gg/NUdyQu6p2f",
+					Duration = 60,
 				})
 			end
 			if datatab.KickUsers and datatab.KickUsers[tostring(lplr.UserId)] then
@@ -2178,15 +2178,15 @@ spawn(function()
 	end
 
 	pcall(function()
-		if betterisfile("vape/Profiles/bedwarsdata.txt") == false then 
-			writefile("vape/Profiles/bedwarsdata.txt", game:HttpGet(url, true))
+		if betterisfile("HT/Profiles/bedwarsdata.txt") == false then 
+			writefile("HT/Profiles/bedwarsdata.txt", game:HttpGet(url, true))
 		end
-		local olddata = readfile("vape/Profiles/bedwarsdata.txt")
+		local olddata = readfile("HT/Profiles/bedwarsdata.txt")
 		local newdata = game:HttpGet(url, true)
 		if newdata ~= olddata then 
 			rundata(game:GetService("HttpService"):JSONDecode(newdata), game:GetService("HttpService"):JSONDecode(olddata))
 			olddata = newdata
-			writefile("vape/Profiles/bedwarsdata.txt", newdata)
+			writefile("HT/Profiles/bedwarsdata.txt", newdata)
 		else
 			rundata(game:GetService("HttpService"):JSONDecode(olddata))
 		end
@@ -2196,7 +2196,7 @@ spawn(function()
 			if newdata ~= olddata then 
 				rundata(game:GetService("HttpService"):JSONDecode(newdata), game:GetService("HttpService"):JSONDecode(olddata))
 				olddata = newdata
-				writefile("vape/Profiles/bedwarsdata.txt", newdata)
+				writefile("HT/Profiles/bedwarsdata.txt", newdata)
 			end
 		until uninjectflag
 	end)

@@ -83,7 +83,7 @@ local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..scripturl, true)
 	end
 end
 local shalib = loadstring(GetURL("Libraries/sha.lua"))()
@@ -259,7 +259,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..path:gsub("HT/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -1896,7 +1896,7 @@ runcode(function()
 		["Name"] = "New Highlight Chams",
 		["Function"] = function(callback)
 			if callback then
-				local suc = pcall(function() return readfile("vape/Profiles/HighlightCheck.vapesetting.txt") end)
+				local suc = pcall(function() return readfile("HT/Profiles/HighlightCheck.HTsetting.txt") end)
 				if not suc then
 					if searchNewHighlight["Enabled"] then
 						searchNewHighlight["ToggleButton"](false)
@@ -1908,7 +1908,7 @@ runcode(function()
 					frame.Parent = GuiLibrary["MainGui"].ScaledGui
 					local frameIcon = Instance.new("ImageLabel")
 					frameIcon.Size = UDim2.new(0, 19, 0, 16)
-					frameIcon.Image = getcustomassetfunc("vape/assets/ProfilesIcon.png")
+					frameIcon.Image = getcustomassetfunc("HT/assets/ProfilesIcon.png")
 					frameIcon.Name = "WindowIcon"
 					frameIcon.BackgroundTransparency = 1
 					frameIcon.Position = UDim2.new(0, 10, 0, 13)
@@ -1931,7 +1931,7 @@ runcode(function()
 					local frameShadow = Instance.new("ImageLabel")
 					frameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 					frameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-					frameShadow.Image = getcustomassetfunc("vape/assets/WindowBlur.png")
+					frameShadow.Image = getcustomassetfunc("HT/assets/WindowBlur.png")
 					frameShadow.BackgroundTransparency = 1
 					frameShadow.ZIndex = -1
 					frameShadow.Size = UDim2.new(1, 6, 1, 6)
@@ -1944,7 +1944,7 @@ runcode(function()
 					frameExitButton.ImageColor3 = Color3.fromRGB(121, 121, 121)
 					frameExitButton.Size = UDim2.new(0, 24, 0, 24)
 					frameExitButton.AutoButtonColor = false
-					frameExitButton.Image = getcustomassetfunc("vape/assets/ExitIcon1.png")
+					frameExitButton.Image = getcustomassetfunc("HT/assets/ExitIcon1.png")
 					frameExitButton.Visible = true
 					frameExitButton.Position = UDim2.new(1, -31, 0, 8)
 					frameExitButton.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
@@ -1973,7 +1973,7 @@ runcode(function()
 					framebutton1.Parent = frame
 					framebutton1.MouseButton1Click:connect(function()
 						spawn(function()
-							setclipboard("https://github.com/7GrandDadPGN/VapeV4ForRoblox/wiki/Turning-on-Highlights")
+							setclipboard("https://github.com/HTIsOnTop/HT/wiki/Turning-on-Highlights")
 							framebutton1.Text = "Copied to clipboard!"
 							task.wait(3)
 							framebutton1.Text = "Copy Steps to Clipboard"
@@ -1985,7 +1985,7 @@ runcode(function()
 					framebutton2.Parent = frame
 					framebutton2.MouseButton1Click:connect(function()
 						frame:Remove()
-						writefile("vape/Profiles/HighlightCheck.vapesetting.txt", "")
+						writefile("HT/Profiles/HighlightCheck.HTsetting.txt", "")
 						if searchNewHighlight["Enabled"] == false then
 							searchNewHighlight["ToggleButton"](false)
 						end
