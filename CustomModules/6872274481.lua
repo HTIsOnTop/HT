@@ -664,7 +664,7 @@ end)
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)
@@ -1487,7 +1487,7 @@ runcode(function()
 					local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 					local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 					if targetedplr then 
-						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/VapeIcon.png")
+						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/HTLogo.png")
 					end
 				end)
 			end
@@ -1539,7 +1539,7 @@ runcode(function()
 									disguisechar(char, 239702688)
 								end
 							end)
-							Cape(char, getcustomassetfunc("HT/assets/VapeCape.png"))
+							Cape(char, getcustomassetfunc("HT/assets/HTCapeOption.png"))
 						end)
 					end)
 				end
@@ -6381,7 +6381,7 @@ runcode(function()
 					local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 					local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 					if targetedplr then 
-						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/VapeIcon.png")
+						targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/HTLogo.png")
 					end
 				end)
 			end
@@ -9873,14 +9873,14 @@ runcode(function()
 				vapecapeconnection = lplr.CharacterAdded:Connect(function(char)
 					task.spawn(function()
 						pcall(function() 
-							Cape(char, getcustomassetfunc("HT/assets/"..(successfulcustom and customlink[#customlink] or "VapeCape.png")))
+							Cape(char, getcustomassetfunc("HT/assets/"..(successfulcustom and customlink[#customlink] or "HTCapeOption.png")))
 						end)
 					end)
 				end)
 				if lplr.Character then
 					task.spawn(function()
 						pcall(function() 
-							Cape(lplr.Character, getcustomassetfunc("HT/assets/"..(successfulcustom and customlink[#customlink] or "VapeCape.png")))
+							Cape(lplr.Character, getcustomassetfunc("HT/assets/"..(successfulcustom and customlink[#customlink] or "HTCapeOption.png")))
 						end)
 					end)
 				end

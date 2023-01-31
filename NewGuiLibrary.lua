@@ -643,7 +643,7 @@ if shared.VapeExecuted then
 		windowlogo1.Active = false
 		windowlogo1.Position = UDim2.new(0, 11, 0, 12)
 		windowlogo1.BackgroundTransparency = 1
-		windowlogo1.Image = getcustomassetfunc(translatedlogo and "HT/translations/"..api["Language"].."/VapeLogo1.png" or "HT/assets/VapeLogo1.png")
+		windowlogo1.Image = getcustomassetfunc(translatedlogo and "HT/translations/"..api["Language"].."/HTitle.png" or "HT/assets/HTitle.png")
 		windowlogo1.Name = "Logo1"
 		windowlogo1.Parent = windowtitle
 		local windowlogo2 = Instance.new("ImageLabel")
@@ -652,7 +652,7 @@ if shared.VapeExecuted then
 		windowlogo2.Position = UDim2.new(1, 1, 0, 1)
 		windowlogo2.BackgroundTransparency = 1
 		windowlogo2.ImageColor3 = Color3.fromHSV(0.44, 1, 1)
-		windowlogo2.Image = getcustomassetfunc("HT/assets/VapeLogo2.png")
+		windowlogo2.Image = getcustomassetfunc("HT/assets/HTVersion.png")
 		windowlogo2.Name = "Logo2"
 		windowlogo2.Parent = windowlogo1
 		local settingstext = Instance.new("TextLabel")

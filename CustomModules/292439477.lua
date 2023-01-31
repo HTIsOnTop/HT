@@ -179,7 +179,7 @@ local WhitelistFunctions = shared.vapewhitelist
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)

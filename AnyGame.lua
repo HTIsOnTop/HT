@@ -192,7 +192,7 @@ shared.vapewhitelist = WhitelistFunctions
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)
@@ -4479,14 +4479,14 @@ runcode(function()
 				vapecapeconnection = lplr.CharacterAdded:Connect(function(char)
 					task.spawn(function()
 						pcall(function() 
-							Cape(char, getcustomassetfunc("HT/assets/VapeCape.png"))
+							Cape(char, getcustomassetfunc("HT/assets/HTCapeOption.png"))
 						end)
 					end)
 				end)
 				if lplr.Character then
 					task.spawn(function()
 						pcall(function() 
-							Cape(lplr.Character, getcustomassetfunc("HT/assets/VapeCape.png"))
+							Cape(lplr.Character, getcustomassetfunc("HT/assets/HTCapeOption.png"))
 						end)
 					end)
 				end

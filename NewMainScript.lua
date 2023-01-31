@@ -777,7 +777,7 @@ onething.BackgroundColor3 = Color3.new(0, 0, 0)
 onething.BorderSizePixel = 0
 onething.BackgroundTransparency = 1
 onething.Visible = false
-onething.Image = getcustomassetfunc(translatedlogo and "HT/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "HT/assets/VapeLogo3.png")
+onething.Image = getcustomassetfunc(translatedlogo and "HT/translations/"..GuiLibrary["Language"].."/HTFullName+Version.png" or "HT/assets/HTFullName+Version.png")
 local onething2 = Instance.new("ImageLabel")
 onething2.Parent = onething
 onething2.Size = UDim2.new(0, 41, 0, 24)
@@ -786,7 +786,7 @@ onething2.Position = UDim2.new(1, 0, 0, 1)
 onething2.BorderSizePixel = 0
 onething2.BackgroundColor3 = Color3.new(0, 0, 0)
 onething2.BackgroundTransparency = 1
-onething2.Image = getcustomassetfunc("HT/assets/VapeLogo4.png")
+onething2.Image = getcustomassetfunc("HT/assets/HTVersionV2.png")
 local onething3 = onething:Clone()
 onething3.ImageColor3 = Color3.new(0, 0, 0)
 onething3.ImageTransparency = 0.5
@@ -1050,25 +1050,25 @@ textguimode = TextGui.CreateDropdown({
 		end
 		if val == "Drawing" then
 			local onethingdrawing = Drawing.new("Image")
-			onethingdrawing.Data = readfile(translatedlogo and "HT/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "HT/assets/VapeLogo3.png")
+			onethingdrawing.Data = readfile(translatedlogo and "HT/translations/"..GuiLibrary["Language"].."/HTFullName+Version.png" or "HT/assets/HTFullName+Version.png")
 			onethingdrawing.Size = onething.AbsoluteSize
 			onethingdrawing.Position = onething.AbsolutePosition + Vector2.new(0, 36)
 			onethingdrawing.ZIndex = 2
 			onethingdrawing.Visible = onething.Visible
 			local onething2drawing = Drawing.new("Image")
-			onething2drawing.Data = readfile("HT/assets/VapeLogo4.png")
+			onething2drawing.Data = readfile("HT/assets/HTVersionV2.png")
 			onething2drawing.Size = onething2.AbsoluteSize
 			onething2drawing.Position = onething2.AbsolutePosition + Vector2.new(0, 36)
 			onething2drawing.ZIndex = 2
 			onething2drawing.Visible = onething.Visible
 			local onething3drawing = Drawing.new("Image")
-			onething3drawing.Data = readfile(translatedlogo and "HT/translations/"..GuiLibrary["Language"].."/VapeLogo3.png" or "HT/assets/VapeLogo3.png")
+			onething3drawing.Data = readfile(translatedlogo and "HT/translations/"..GuiLibrary["Language"].."/HTFullName+Version.png" or "HT/assets/HTFullName+Version.png")
 			onething3drawing.Size = onething.AbsoluteSize
 			onething3drawing.Position = onething.AbsolutePosition + Vector2.new(1, 37)
 			onething3drawing.Transparency = 0.5
 			onething3drawing.Visible = onething.Visible and onething3.Visible
 			local onething4drawing = Drawing.new("Image")
-			onething4drawing.Data = readfile("HT/assets/VapeLogo4.png")
+			onething4drawing.Data = readfile("HT/assets/HTVersionV2.png")
 			onething4drawing.Size = onething2.AbsoluteSize
 			onething4drawing.Position = onething2.AbsolutePosition + Vector2.new(1, 37)
 			onething4drawing.Transparency = 0.5
@@ -1893,7 +1893,7 @@ if shared.VapeIndependent then
 		if not shared.VapeSwitchServers then
 			if blatantmode["Enabled"] then
 				pcall(function()
-					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "HT is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+					local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "HT is now in Blatant Mode.", 5.5, "assets/Warning.png")
 					frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 				end)
 			end
@@ -1939,7 +1939,7 @@ else
 	if not shared.VapeSwitchServers then
 		if blatantmode["Enabled"] then
 			pcall(function()
-				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "HT is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				local frame = GuiLibrary["CreateNotification"]("Blatant Enabled", "HT is now in Blatant Mode.", 5.5, "assets/Warning.png")
 				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 			end)
 		end

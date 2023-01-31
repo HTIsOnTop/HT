@@ -208,7 +208,7 @@ end
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)
@@ -488,7 +488,7 @@ local function renderNametag(plr)
 				local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 				local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 				if targetedplr then 
-					targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/VapeIcon.png")
+					targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/HTLogo.png")
 				end
 			end)
 		end
@@ -498,7 +498,7 @@ local function renderNametag(plr)
 				spawn(function()
 					pcall(function() 
 						bedwars["getEntityTable"]:getEntity(plr):setNametag(nametag)
-						Cape(char, getcustomassetfunc("HT/assets/VapeCape.png"))
+						Cape(char, getcustomassetfunc("HT/assets/HTCapeOption.png"))
 					end)
 				end)
 			end
@@ -508,7 +508,7 @@ local function renderNametag(plr)
 				spawn(function()
 					pcall(function() 
 						bedwars["getEntityTable"]:getEntity(plr):setNametag(nametag)
-						Cape(plr.Character, getcustomassetfunc("HT/assets/VapeCape.png"))
+						Cape(plr.Character, getcustomassetfunc("HT/assets/HTCapeOption.png"))
 					end)
 				end)
 			end

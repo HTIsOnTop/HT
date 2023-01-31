@@ -27,7 +27,7 @@ end
 
 local function createwarning(title, text, delay)
 	pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "HTprivate/assets/WarningNotification.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "HTprivate/assets/Warning.png")
 		frame.Frame.BackgroundColor3 = Color3.fromRGB(236, 129, 44)
 		frame.Frame.Frame.BackgroundColor3 = Color3.fromRGB(236, 129, 44)
 	end)
