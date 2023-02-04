@@ -107,7 +107,7 @@ local WhitelistFunctions = shared.vapewhitelist
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)
@@ -294,6 +294,64 @@ local function findTouchInterest(tool)
 	return tool and tool:FindFirstChildWhichIsA("TouchTransmitter", true)
 end
 
+--skidding speedrun les go
+local function getFiOneConstants(func) 
+    local upval = debug.getupvalues(func)[1] 
+    if typeof(upval) == "table" then
+        local consts = rawget(upval, "const")
+        if typeof(consts) == "table" then
+            return consts
+        end
+    end
+end
+
+local function shallowClone(tab) 
+    if not tab then 
+        return 
+    end
+
+    local t = {}
+    for i, v in next, tab do
+        t[i] = v
+    end
+    
+    return t
+end
+
+local function findInFiOne(tab, typeOf, checkFunc)
+    for i,v in next, tab do
+        if type(v) == "table" then 
+            local value = rawget(v, "value")
+            if typeof(value) == typeOf and checkFunc(value) then 
+                return value
+            end 
+
+            for i2, v2 in next, v do 
+                if typeof(v2) == "table" then 
+                    local value = rawget(v2, "value")
+                    if typeof(value) == typeOf and checkFunc(value) then 
+                        return value
+                    end 
+                end
+            end
+        end
+    end
+end
+
+local function remoteCheck(tab) 
+    if typeof(tab) == "table" then
+        if rawget(tab, "Instance") then 
+            return
+        end
+
+        local fireServer = rawget(tab, "FireServer")
+        local method = fireServer or rawget(tab, "InvokeServer")
+        method = typeof(method) == "function" and islclosure(method) and method
+
+        return method, method == fireServer and "FireServer" or "InvokeServer"
+    end
+end 
+
 local remotes
 local clientEnv = getsenv(lplr.PlayerScripts.client)
 local itemhandler = require(repstorage.game.Items)
@@ -311,25 +369,30 @@ repeat
 	remotes = {}
 	tabcount = 0
 	for i,v in next, getgc(true) do 
-		if typeof(v) == 'table' then 
-			pcall(function()
-				if typeof(rawget(v, "FireServer")) == "function" then
-					local remotetab = debug.getupvalue(v.FireServer, 4)
-					local rem = remotetab[1].value
-					local keyfunc = remotetab[2].value
-					remotes[rem.Name] = {FireServer = function(self, ...)
-						rem:FireServer(keyfunc(), ...)
-					end}
-				elseif typeof(rawget(v, "InvokeServer")) == "function" then 
-					local remotetab = debug.getupvalue(v.InvokeServer, 4)
-					local rem = remotetab[1].value
-					local keyfunc = remotetab[2].value
-					remotes[rem.Name] = {InvokeServer = function(self, ...)
-						return rem:InvokeServer(keyfunc(), ...)
-					end}
-				end
-			end)
-		end
+		if typeof(v) == "table" then
+            for _, v2 in next, v do
+                if typeof(v2) == "function" then
+                    local consts = getFiOneConstants(v2)
+                    local found = consts and (table.find(consts, "FireServer") or table.find(consts, "InvokeServer"))
+                    if found then 
+                        local upvals = debug.getupvalues(v2)
+                        local remote = findInFiOne(upvals, "Instance", function(x) 
+                            return x:IsA("RemoteEvent") or x:IsA("RemoteFunction")
+                        end)
+                        
+                        if remote then
+                            local isEvent = remote:IsA("RemoteEvent")
+                            local tab = shallowClone(v)
+                            tab.FireServer = v2
+                            table.remove(tab, table.find(tab, v2))
+                            remotes[remote.Name] = tab
+						else
+							warn("skidded code from engo fail :sob:")
+						end
+                    end
+                end
+            end
+        end
 	end
 	for i2,v2 in pairs(remotes) do tabcount = tabcount + 1 end
 	if tabcount >= 4 or shared.VapeExecuted == nil then break end
@@ -404,6 +467,19 @@ local function getAxe()
 			best = data.itemStats.axeStrength
 			returned = i
 			returned2 = data
+		end
+	end
+	return returned, returned2
+end
+
+local function getShovel()
+	local best, returned, returned2 = 0, nil, nil
+	for i,v in pairs(clientdata.getHotbar()) do 
+		local data = newitems[v]
+		if data and tostring(data.itemType) == "Shovel" then 
+			returned = i
+			returned2 = data
+			break
 		end
 	end
 	return returned, returned2
@@ -497,6 +573,7 @@ end)
 if not shared.vapehooked then
 	shared.vapehooked = true
 	local tab = {31, 14, 1}
+	local info = getrenv().table.find
 	local bit_lshift = getrenv().bit32.lshift
 	setreadonly(getrenv().bit32, false)
 	getrenv().bit32.lshift = function(a, b, ...)
@@ -506,6 +583,14 @@ if not shared.vapehooked then
 		return bit_lshift(a, b, ...)
 	end
 	setreadonly(getrenv().bit32, true)
+	setreadonly(getrenv().table, false)
+	getrenv().table.find = function(a, b, ...)
+		if info(a, "Collector") and info(a, "client") and b ~= "debug" then 
+			return 1    
+		end
+		return info(a, b, ...)
+	end
+	setreadonly(getrenv().table, true	)
 end
 
 GuiLibrary.SelfDestructEvent.Event:Connect(function()
