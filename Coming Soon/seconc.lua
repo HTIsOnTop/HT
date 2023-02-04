@@ -1851,42 +1851,6 @@ GeneralSettings.CreateButton2({
 	["Function"] = GuiLibrary["SelfDestruct"]
 })
 
-local autoclickertick = tick()
-autoclicker = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-	["Name"] = "Coming Soon", 
-	["Function"] = function(callback)
-		if callback then
-			RunLoops:BindToRenderStep("AutoClicker", 1, function() 
-				if entity.isAlive and autoclickertick <= tick() then
-					if autoclickermode["Value"] == "Tool" then
-						local tool = lplr and lplr.Character and lplr.Character:FindFirstChildWhichIsA("Tool")
-						if tool and uis:IsMouseButtonPressed(0) then
-							tool:Activate()
-							autoclickertick = tick() + (1 / autoclickercps["GetRandomValue"]()) * Random.new().NextNumber(Random.new(), 0.75, 1)
-						end
-					else
-						if mousefunctions then
-							if (isrbxactive or iswindowactive)() and GuiLibrary["MainGui"].ScaledGui.ClickGui.Visible == false then
-								local clickfunc = (autoclickermode["Value"] == "Click" and mouse1click or mouse2click)
-								clickfunc()
-								autoclickertick = tick() + (1 / autoclickercps["GetRandomValue"]()) * Random.new().NextNumber(Random.new(), 0.75, 1)
-							end
-						else
-							createwarning("AutoClicker", "Mouse functions missing", 5)
-							if autoclicker["Enabled"] then
-								autoclicker["ToggleButton"](false)
-							end
-						end
-					end
-				end
-			end)
-		else
-			RunLoops:UnbindFromRenderStep("AutoClicker")
-		end
-	end
-})
-
-
 if shared.VapeIndependent then
 	spawn(function()
 		repeat task.wait() until shared.VapeManualLoad
