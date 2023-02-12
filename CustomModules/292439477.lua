@@ -176,10 +176,9 @@ do
 end
 
 local WhitelistFunctions = shared.vapewhitelist
-
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)
@@ -712,23 +711,19 @@ runcode(function()
 			if callback then 
 				task.spawn(function()
 					repeat
-						task.wait()
-						local targettable = {}
-						local targetsize = 0
+						targetinfo.Targets.SilentAim = nil
 						if lastTargetTick <= tick() and lastTarget then
 							lastTarget = nil
 						end
 						if lastTarget then
-							targettable[lastTarget._player.Name] = {
-								["UserId"] = lastTarget._player.UserId,
-								["Health"] = lastTarget._healthstate.health0,
-								["MaxHealth"] = 100
+							targetinfo.Targets.SilentAim = {
+								Player = lastTarget._player,
+								Humanoid = {
+									Health = lastTarget._healthstate.health0,
+									MaxHealth = 100
+								}
 							}
-							targetsize = targetsize + 1
 						end
-						pcall(function()
-							targetinfo.UpdateInfo(targettable, targetsize)
-						end)
 						local controller = pf.WeaponControllerInterface:getController()
 						SilentAimGun = controller and controller:getActiveWeapon()
 						if SilentAimGun and SilentAimGun:getWeaponType() == "Firearm" then 
@@ -762,13 +757,14 @@ runcode(function()
 								SilentAimGun:shoot(plr and true or false)
 							end
 						end
+						task.wait()
 					until (not SilentAim.Enabled)
 				end)
 				updateScope = pf.HudScopeInterface.updateScope
 				pf.HudScopeInterface.updateScope = function(pos1, pos2, size1, size2)
 					if lastTargetTick > tick() then 
-						pos1 = UDim2.new(0, 960, 0, 540)
-						pos2 = UDim2.new(0, 960, 4.439627332431e-09, 540)
+						pos1 = UDim2.new(0, cam.ViewportSize.X / 2, 0, cam.ViewportSize.Y / 2)
+						pos2 = UDim2.new(0, cam.ViewportSize.X / 2, 4.439627332431e-09, cam.ViewportSize.Y / 2)
 						size1 = UDim2.new(1.12, 0, 1.12, 0)
 						size2 = UDim2.new(0.9, 0, 0.9, 0)
 					end
@@ -1342,11 +1338,8 @@ runcode(function()
 				end)
 				task.spawn(function()
 					repeat
-						task.wait()
-						if (not Killaura.Enabled) then break end
-						local targettable = {}
-						local targetsize = 0
 						local attackedplayers = {}
+						targetinfo.Targets.Killaura = nil
 						if lplr.Character and lplr.Character.PrimaryPart then
 							local plr = GetNearestHumanoidToPosition(killauratargetframe["Players"].Enabled, killaurarange.Value, {
 								AimPart = "_head",
@@ -1358,12 +1351,13 @@ runcode(function()
 								local angle = math.acos(localfacing:Dot(vec))
 								if angle >= (math.rad(killauraangle.Value) / 2) then continue end
 								killauranear = true
-								targettable[plr._player.Name] = {
-									["UserId"] = plr._player.UserId,
-									["Health"] = plr._healthstate.health0,
-									["MaxHealth"] = 100
+								targetinfo.Targets.Killaura = {
+									Player = plr._player,
+									Humanoid = {
+										Health = plr._healthstate.health0,
+										MaxHealth = 100
+									}
 								}
-								targetsize = targetsize + 1
 								if killauratarget.Enabled then
 									table.insert(attackedplayers, plr)
 								end
@@ -1384,7 +1378,7 @@ runcode(function()
 								killauranear = false
 							end
 						end
-						targetinfo.UpdateInfo(targettable, targetsize)
+						task.wait()
 					until (not Killaura.Enabled)
 				end)
 			else

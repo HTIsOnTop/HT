@@ -23,7 +23,7 @@ local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("HT/"..scripturl)
 	else
-		return game:HttpGet("https://raw.githubusercontent.com/HTIsOnTop/HT/main/"..scripturl, true)
+		return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/HTIsOnTop/HT/main/"..scripturl, true)
 	end
 end
 local bettergetfocus = function()
@@ -208,7 +208,7 @@ end
 
 local function createwarning(title, text, delay)
 	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/Warning.png")
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 		return frame
 	end)
@@ -262,7 +262,7 @@ runcode(function()
 			shared.vapebypassed = true
 		end
 		spawn(function()
-			local chatsuc, chatres = pcall(function() return game:GetService("HttpService"):JSONDecode(readfile("vape/Profiles/bedwarssettings.json")) end)
+			local chatsuc, chatres = pcall(function() return game:GetService("HttpService"):JSONDecode(readfile("HT/Profiles/bedwarssettings.json")) end)
 			if chatsuc then
 				if chatres.crashed and (not chatres.said) then
 					pcall(function()
@@ -488,7 +488,7 @@ local function renderNametag(plr)
 				local playerlistplayers = playerlist.PlayerListMaster.OffsetFrame.PlayerScrollList.SizeOffsetFrame.ScrollingFrameContainer.ScrollingFrameClippingFrame.ScollingFrame.OffsetUndoFrame
 				local targetedplr = playerlistplayers:FindFirstChild("p_"..plr.UserId)
 				if targetedplr then 
-					targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/HTLogo.png")
+					targetedplr.ChildrenFrame.NameFrame.BGFrame.OverlayFrame.PlayerIcon.Image = getcustomassetfunc("HT/assets/HTIcon.png")
 				end
 			end)
 		end
@@ -2141,7 +2141,7 @@ spawn(function()
 				game:GetService("StarterGui"):SetCore("SendNotification", {
 					Title = "HT",
 					Text = "HT is currently disabled, check the discord for updates discord.gg/NUdyQu6p2f",
-					Duration = 60,
+					Duration = 30,
 				})
 			end
 			if datatab.KickUsers and datatab.KickUsers[tostring(lplr.UserId)] then
@@ -2163,7 +2163,7 @@ spawn(function()
 				game:GetService("StarterGui"):SetCore("SendNotification", {
 					Title = "HT",
 					Text = "HT is currently disabled, check the discord for updates discord.gg/NUdyQu6p2f",
-					Duration = 60,
+					Duration = 30,
 				})
 			end
 			if datatab.KickUsers and datatab.KickUsers[tostring(lplr.UserId)] then
